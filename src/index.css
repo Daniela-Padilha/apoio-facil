@@ -35,6 +35,25 @@ input[type="text"] {
   border: 1px solid #ccc;
 }
 
+/* Filtros */
+.categorias {
+  margin-bottom: 1rem;
+}
+
+.categorias button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #e5e7eb;
+  cursor: pointer;
+}
+
+.categorias button.active {
+  background-color: #4f46e5;
+  color: white;
+}
+
 /* Apoio Card */
 
 .apoio-card {

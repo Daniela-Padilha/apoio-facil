@@ -4,10 +4,16 @@ import ApoioCard from "../components/ApoioCard";
 
 function Home() {
 	const [searchTerm, setSearchTerm] = useState("");
+	const [categoria, setCategoria] = useState("Todos");
+
+	const categorias = ["Todos", ...new Set(apoios.map((a) => a.categoria))];
 
 	const filteredApoios = apoios.filter((apoio) => {
 		const text = `${apoio.nome} ${apoio.descricao} ${apoio.categoria}`.toLowerCase();
-		return (text.includes(searchTerm.toLowerCase()));
+		const matchesText = text.includes(searchTerm.toLowerCase());
+		const matchesCategoria = categoria === "Todos" || apoio.categoria === categoria;
+		
+		return (matchesText && matchesCategoria);
 	});
 
 	return (
@@ -21,6 +27,17 @@ function Home() {
 			>
 			</input>
 
+			<div className="categorias">
+				{categorias.map((cat) => (
+					<button
+						key={cat}
+						onClick={() => setCategoria(cat)}
+						className={categoria === cat ? "active" : ""}
+					>
+						{cat}
+					</button>
+				))}
+			</div>
 			{filteredApoios.map((apoio) => (
 				<ApoioCard key={apoio.id} apoio={apoio} />
 			))}
